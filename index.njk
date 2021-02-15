@@ -1,0 +1,16 @@
+---
+layout: base-layout.njk
+pagination:
+  data: collections.note
+  size: 10
+  reverse: true
+  alias: notes
+---
+{% for note in notes %}
+  <article>
+    <h1>
+      <a href="{{ note.url | url }}">{{ note.data.title }}</a>
+    </h1>
+    {{ note.date }}
+  </article>
+{% endfor %}
