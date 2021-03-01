@@ -1,16 +1,13 @@
 ---
-layout: base-layout.njk
-pagination:
-  data: collections.note
-  size: 10
-  reverse: true
-  alias: notes
+layout: layout.liquid
+pageTitle: bnijenhuis
 ---
-{% for note in notes %}
-  <article>
-    <h1>
-      <a href="{{ note.url | url }}">{{ note.data.title }}</a>
-    </h1>
-    {{ note.date }}
-  </article>
+
+<p>Bernard Nijenhuis • Front-end Developer • 1983 • Katwijk, The Netherlands • Father of 3 kids • Husband to 1 wife • Owner of 2 cats</p>
+
+<h2>Notes</h2>
+<ul>
+{% for note in collections.notes %}
+    <li><a href="{{ note.url | url }}">{{ note.data.pageTitle }}</a></li>
 {% endfor %}
+</ul>
