@@ -7,7 +7,7 @@ pageTitle: bnijenhuis
 
 <h2>Notes</h2>
 <ul>
-{% for note in collections.notes %}
-    <li><a href="{{ note.url | url }}">{{ note.data.pageTitle }}</a></li>
+{% for note in collections.notes | reverse %}
+    <li><a href="{{ note.url | url }}"><time datetime="{{ note.data.date | postDate }}">{{ note.data.date | readablePostDate }}</time> - {{ note.data.pageTitle }}</a></li>
 {% endfor %}
 </ul>

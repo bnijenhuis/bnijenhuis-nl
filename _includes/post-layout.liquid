@@ -1,6 +1,8 @@
 ---
 layout: layout.liquid
 ---
+<p>Posted on: <time datetime="{{ page.date | postDate }}">{{ page.date | readablePostDate }}</time></p>
+
 {{ content }}
 
 <a href="/">Back to homepage</a>
