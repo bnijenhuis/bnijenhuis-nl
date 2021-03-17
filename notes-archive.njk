@@ -1,0 +1,14 @@
+---
+layout: layout.liquid
+permalink: /notes/
+---
+
+<h1>Notes</h1>
+
+<ul>
+{% for note in collections.notes | reverse %}
+    <li><a href="{{ note.url | url }}"><time datetime="{{ note.data.date | postDate }}">{{ note.data.date | readablePostDate }}</time> - {{ note.data.pageTitle }}</a></li>
+{% endfor %}
+</ul>
+
+<a href="/">Back to homepage</a>
