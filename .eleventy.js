@@ -13,4 +13,7 @@ module.exports = function(eleventyConfig) {
             zone: "Europe/Amsterdam",
         }).setLocale('en').toISODate();
     });
+
+    // Copy `img/favicon/` to `_site/`
+    eleventyConfig.addPassthroughCopy({ "img/favicon": "/" });
 };
