@@ -1,7 +1,14 @@
 const { DateTime } = require("luxon");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 
 module.exports = function(eleventyConfig) {
     
+    eleventyConfig.addPlugin(pluginRss, {
+        posthtmlRenderOptions: {
+          closingSingleTag: "default" // opt-out of <img/>-style XHTML single tags
+        }
+    });
+
     eleventyConfig.addFilter("readablePostDate", (dateObj) => {
         return DateTime.fromJSDate(dateObj, {
             zone: "Europe/Amsterdam",
