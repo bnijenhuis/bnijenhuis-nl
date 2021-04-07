@@ -15,3 +15,4 @@ pagination:
     <li><a href="{{ note.url | url }}"><time datetime="{{ note.data.date | postDate }}">{{ note.data.date | readablePostDate }}</time> - {{ note.data.pageTitle }}</a></li>
 {% endfor %}
 </ul>
+<p><a href="/feed.xml" title="Feed of all notes">Feed of all notes</a></p>
