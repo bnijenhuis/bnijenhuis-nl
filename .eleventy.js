@@ -21,6 +21,12 @@ module.exports = function(eleventyConfig) {
         }).setLocale('en').toISODate();
     });
 
+    eleventyConfig.addWatchTarget("css/sass/");
+
+    eleventyConfig.addPassthroughCopy({ "css/style*" : "/css/" });
+
+    eleventyConfig.addPassthroughCopy({ "fonts/" : "/fonts/" });
+
     // Copy `img/favicon/` to `_site/`
-    eleventyConfig.addPassthroughCopy({ "img/favicon": "/" });
+    eleventyConfig.addPassthroughCopy({ "img/favicon" : "/" });
 };
