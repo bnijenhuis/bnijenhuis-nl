@@ -5,6 +5,8 @@ eleventyExcludeFromCollections: true
 
 <h1>Notes</h1>
 
+<p>This is the collection of all the notes I've written.</p>
+
 <ul>
 {% for note in collections.notes | reverse %}
     <li><a href="{{ note.url | url }}"><time datetime="{{ note.data.date | postDate }}">{{ note.data.date | readablePostDate }}</time> - {{ note.data.pageTitle }}</a></li>
