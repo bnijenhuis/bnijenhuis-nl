@@ -41,11 +41,26 @@ If you look at the `src` property you can see I use two types of `format` declar
 
 You might notice the `font-weight` property is defined by two values. This means that this particular font supports weights between 400 and 700. Some variable fonts also have a `font-stretch` property and you can add this as well. To find out what values you should use with your variable fonts you can upload the font to [Wakamai Fondue](https://wakamaifondue.com/) to get all the specifications of your font.
 
-Variable fonts are [pretty well supported](https://caniuse.com/variable-fonts), but if you need to support older versions of browsers (or Internet Explorer 11) you can use a fallback. First define the static font as you normally would. Then override the font with the variable font by using the `@supports` CSS rule like this:
+Variable fonts are [pretty well supported](https://caniuse.com/variable-fonts), but if you need to support older versions of browsers (or Internet Explorer 11) you can use a fallback. First define the static font as you normally would. Then override the font with the variable font by using the `@supports` CSS rule. For instance:
 ```
+@font-face {
+    font-family: Asap;
+    src: url('/fonts/Asap-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+    font-style: normal;
+}
+
 @supports (font-variation-settings: normal) {
     @font-face {
-        ...
+        @font-face {
+            font-family: Asap;
+            src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
+                url('/fonts/Asap-VariableFont_wght.woff2') format('woff2-variations');
+            font-weight: 400 700;
+            font-display: swap;
+            font-style: normal;
+        }
     }
 }
 ```
