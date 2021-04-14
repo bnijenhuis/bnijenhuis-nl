@@ -53,14 +53,12 @@ Variable fonts are [pretty well supported](https://caniuse.com/variable-fonts), 
 
 @supports (font-variation-settings: normal) {
     @font-face {
-        @font-face {
-            font-family: Asap;
-            src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
-                url('/fonts/Asap-VariableFont_wght.woff2') format('woff2-variations');
-            font-weight: 400 700;
-            font-display: swap;
-            font-style: normal;
-        }
+        font-family: Asap;
+        src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
+            url('/fonts/Asap-VariableFont_wght.woff2') format('woff2-variations');
+        font-weight: 400 700;
+        font-display: swap;
+        font-style: normal;
     }
 }
 ```
