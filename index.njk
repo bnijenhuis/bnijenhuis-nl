@@ -7,8 +7,8 @@ pageTitle: bnijenhuis
 
 <h2>Most recent notes</h2>
 <ul>
-{% assign notes = collections.notes | reverse %}
-{% for note in notes limit:5 %}
+{% set notes = collections.notes | reverse %}
+{% for note in notes.slice(0, 5) %}
     <li><a href="{{ note.url | url }}"><time datetime="{{ note.data.date | postDate }}">{{ note.data.date | readablePostDate }}</time> - {{ note.data.pageTitle }}</a></li>
 {% endfor %}
 </ul>
