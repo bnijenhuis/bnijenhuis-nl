@@ -1,17 +1,14 @@
 ---
 layout: layout.liquid
 pageTitle: bnijenhuis
-pagination:
- data: collections.notes
- size: 5
- reverse: true
 ---
 
 <p>Bernard Nijenhuis • Front-end Developer • Katwijk, The Netherlands • Father of 3 kids • Husband to 1 wife • Owner of 2 cats</p>
 
 <h2>Most recent notes</h2>
 <ul>
-{% for note in pagination.items %}
+{% assign notes = collections.notes | reverse %}
+{% for note in notes limit:5 %}
     <li><a href="{{ note.url | url }}"><time datetime="{{ note.data.date | postDate }}">{{ note.data.date | readablePostDate }}</time> - {{ note.data.pageTitle }}</a></li>
 {% endfor %}
 </ul>
