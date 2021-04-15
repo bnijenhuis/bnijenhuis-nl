@@ -23,7 +23,7 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.addWatchTarget("css/sass/");
 
-    eleventyConfig.addPassthroughCopy({ "css/style*" : "/css/" });
+    eleventyConfig.addPassthroughCopy({ "css/" : "/css/" });
 
     eleventyConfig.addPassthroughCopy({ "fonts/" : "/fonts/" });
 
