@@ -41,27 +41,30 @@ If you look at the `src` property you can see I use two types of `format` declar
 
 You might notice the `font-weight` property is defined by two values. This means that this particular font supports weights between 400 and 700. Some variable fonts also have a `font-stretch` property and you can add this as well. To find out what values you should use with your variable fonts you can upload the font to [Wakamai Fondue](https://wakamaifondue.com/) to get all the specifications of your font.
 
-Variable fonts are [pretty well supported](https://caniuse.com/variable-fonts), but if you need to support older versions of browsers (or Internet Explorer 11) you can use a fallback. First define the static font as you normally would. Then override the font with the variable font by using the `@supports` CSS rule. For instance:
+## Fall backs
+
+Variable fonts are [pretty well supported](https://caniuse.com/variable-fonts). The nice thing about variable fonts is that it will always provide one style as a built in fall back so it works on non variable fonts supporting systems as a static font. Mostly it will be the regular style, but it can differ per font.
+
+If the regular style is the built in fall back and the browser needs to render a bold text, it will create a faux bold. It's not always what you want, but for a fall back it might be enough. If you don't want the browser to create the faux bold you will need to include the static bold font file. Also, when the built in fall back isn't the style you want, you have to load the static font separately. 
+
+For the `Asap` font the built in fall back style is the regular style. So for non supporting browsers the first `@font-face` declaration will be parsed as the regular style. If you want the bold style rendered as it's supposed to you need the second `@font-face` declaration so the bold font file is loaded as well. The same goes for the italic style and all the available other styles.
 ```
 @font-face {
     font-family: Asap;
-    src: url('/fonts/Asap-Regular.woff2') format('woff2');
-    font-weight: normal;
+    src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
+        url('/fonts/Asap-VariableFont_wght.woff2') format('woff2-variations');
+    font-weight: 400 700;
     font-display: swap;
     font-style: normal;
 }
 
-@supports (font-variation-settings: normal) {
-    @font-face {
-        font-family: Asap;
-        src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
-            url('/fonts/Asap-VariableFont_wght.woff2') format('woff2-variations');
-        font-weight: 400 700;
-        font-display: swap;
-        font-style: normal;
-    }
+@font-face {
+    font-family: Asap;
+    src: url('/fonts/Asap-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-display: swap;
+    font-style: normal;
 }
 ```
-What's really nice about variable fonts is that if a browser does not support them, it will still try to use the webfont. It will not have the bold and italic variants, but it will do it's best to replicate it. It's not always what you want, but for a fallback it can be acceptable.
 
 So that's it. That's all there is to it to implement self-hosted variable fonts to your website.
