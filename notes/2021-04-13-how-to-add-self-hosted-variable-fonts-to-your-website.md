@@ -41,19 +41,18 @@ If you look at the `src` property you can see I use two types of `format` declar
 
 You might notice the `font-weight` property is defined by two values. This means that this particular font supports weights between 400 and 700. Some variable fonts also have a `font-stretch` property and you can add this as well. To find out what values you should use with your variable fonts you can upload the font to [Wakamai Fondue](https://wakamaifondue.com/) to get all the specifications of your font.
 
-## Fall backs
+## Fallbacks
 
-Variable fonts are [pretty well supported](https://caniuse.com/variable-fonts). The nice thing about variable fonts is that it will always provide one style as a built in fall back so it works on non variable fonts supporting systems as a static font. Mostly it will be the regular style, but it can differ per font.
+Variable fonts are [pretty well supported](https://caniuse.com/variable-fonts). The nice thing about variable fonts is that it will always provide one style as a built in fallback so it works on non variable fonts supporting systems as a static font. Mostly it will be the regular style, but it can differ per font.
 
-If the regular style is the built in fall back and the browser needs to render a bold text, it will create a faux bold. It's not always what you want, but for a fall back it might be enough. If you don't want the browser to create the faux bold you will need to include the static bold font file. Also, when the built in fall back isn't the style you want, you have to load the static font separately. 
+If the regular style is the built in fallback and the browser needs to render a bold text, it might create a faux bold (this depends on the browser). It's not always what you want, but for a fallback it might be enough. If you don't want the browser to create the faux bold you will need to include the static bold font file. Also, when the built in fallback isn't the style you want (because for some obscure reason the fallback style is italic or something), you have to load the static font separately as well. 
 
-For the `Asap` font the built in fall back style is the regular style. So for non supporting browsers the first `@font-face` declaration will be parsed as the regular style. If you want the bold style rendered as it's supposed to you need the second `@font-face` declaration so the bold font file is loaded as well. The same goes for the italic style and all the available other styles.
+For the `Asap` font the built in fallback style is the regular style. So for non supporting browsers declaring only the variable font will result in text rendered in the regular style. If you want the other styles rendered as they're supposed to you'll need the define all the styles first. Then follow up with a `@supports` declaration for the variable font, like below, to load the variable font for supporting browsers:
 ```
 @font-face {
     font-family: Asap;
-    src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
-        url('/fonts/Asap-VariableFont_wght.woff2') format('woff2-variations');
-    font-weight: 400 700;
+    src: url('/fonts/Asap-Regular.woff2') format('woff2');
+    font-weight: normal;
     font-display: swap;
     font-style: normal;
 }
@@ -64,6 +63,17 @@ For the `Asap` font the built in fall back style is the regular style. So for no
     font-weight: bold;
     font-display: swap;
     font-style: normal;
+}
+
+@supports (font-variation-settings: normal) {
+    @font-face {
+        font-family: Asap;
+        src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
+            url('/fonts/Asap-VariableFont_wght.woff2') format('woff2-variations');
+        font-weight: 400 700;
+        font-display: swap;
+        font-style: normal;
+    }
 }
 ```
 
