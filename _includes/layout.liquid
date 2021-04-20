@@ -4,7 +4,7 @@
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
   <meta name="description" content="Bernard Nijenhuis • Front-end Developer • Katwijk, The Netherlands • Father of 3 kids • Husband to 1 wife • Owner of 2 cats" />
-  <title>bnijenhuis</title> 
+  <title>{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %} | bnijenhuis</title> 
   
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -16,8 +16,6 @@
 </head> 
 <body>
   <main> 
-        <h1>{{ pageTitle }}</h1>
-
         {{ content }}
   </main> 
 </body> 
