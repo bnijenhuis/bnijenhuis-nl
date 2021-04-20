@@ -8,11 +8,11 @@ pageTitle: About me
 <p>You can find me on <a href="https://twitter.com/bnijenhuis/">Twitter</a>, <a href="https://www.instagram.com/bnijenhuis/">Instagram</a>, <a href="https://www.linkedin.com/in/bernardnijenhuis/">LinkedIn</a> and <a href="https://github.com/bnijenhuis/">GitHub</a>.</p>
 
 <h2>Most recent notes</h2>
+<p>These are the 5 most recent notes. You can check out <a href="/notes/" title="All notes">all my notes</a> or follow the <a href="/feed.xml" title="Feed of all my notes">feed of all my notes</a>.</p>
 <ul>
 {% set notes = collections.notes | reverse %}
 {% for note in notes.slice(0, 5) %}
     <li><a href="{{ note.url | url }}"><time datetime="{{ note.data.date | postDate }}">{{ note.data.date | readablePostDate }}</time> - {{ note.data.pageTitle }}</a></li>
 {% endfor %}
 </ul>
-<p>These are the 5 most recent notes. You can check out <a href="/notes/" title="All notes">all my notes</a> or follow the <a href="/feed.xml" title="Feed of all my notes">feed of all my notes</a>.</p>
-<p>If you're wondering why the style is so basic I suggest you read my note about <a href="/notes/2021-03-01-unhurried-development/" title="Unhurried Development">Unhurried Development</a>.</p>
+<p><em>If you're wondering why the style is so basic I suggest you read my note about <a href="/notes/2021-03-01-unhurried-development/" title="Unhurried Development">Unhurried Development</a>.</em></p>
