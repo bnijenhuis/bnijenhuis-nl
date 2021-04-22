@@ -1,5 +1,6 @@
 const { DateTime } = require("luxon");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
+const fs = require("fs");
 
 module.exports = function(eleventyConfig) {
     
@@ -19,6 +20,23 @@ module.exports = function(eleventyConfig) {
         return DateTime.fromJSDate(dateObj, {
             zone: "Europe/Amsterdam",
         }).setLocale('en').toISODate();
+    });
+
+    eleventyConfig.addFilter("bust", (url) => {
+        const [urlPart, paramPart] = url.split("?");
+        const params = new URLSearchParams(paramPart || "");
+        const relativeUrl = (url.charAt(0) == "/") ? url.substring(1): url;
+
+        try {
+
+            const fileStats = fs.statSync(relativeUrl);
+            const dateTimeModified = new DateTime(fileStats.mtime).toFormat("X");
+    
+            params.set("v", dateTimeModified);
+
+        } catch (error) { }
+            
+        return `${urlPart}?${params}`;
     });
 
     eleventyConfig.addWatchTarget("css/sass/");
