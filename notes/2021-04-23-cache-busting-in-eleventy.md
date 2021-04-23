@@ -65,4 +65,4 @@ When using this filter it will:
 5. Added the timestamp to the url parameters;
 6. Add the new url parameters to the file url.
 
-Now my CSS file url will only update if the CSS file itself has been changed!
+Now my CSS file url will only update if the CSS file itself has been changed.
