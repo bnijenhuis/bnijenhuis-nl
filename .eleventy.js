@@ -25,7 +25,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addFilter("bust", (url) => {
         const [urlPart, paramPart] = url.split("?");
         const params = new URLSearchParams(paramPart || "");
-        const relativeUrl = (url.charAt(0) == "/") ? url.substring(1): url;
+        const relativeUrl = (urlPart.charAt(0) == "/") ? urlPart.substring(1): urlPart;
 
         try {
 
