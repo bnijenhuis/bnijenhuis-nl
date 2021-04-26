@@ -2,7 +2,7 @@
 pageTitle: 'Cache busting in Eleventy'
 date: 2021-04-23
 ---
-Because I'm still following my [Unhurried Development](/notes/2021-03-01-unhurried-development/) principle I'm taking small steps and making small changes. That's how I came across an issue with cached assets. A cached CSS file in my case, to be specific. And although it's easy to force reload on desktop browsers, this is a lot harder on mobile devices. Besides, visitors don't know they are using a CSS file that is served from cache, so they only see the changes when the cache expires.
+Because I'm still following my [Unhurried Development](/notes/2021-03-01-unhurried-development/) principle I'm taking small steps and making small changes. That's how I came across an issue with cached assets<small><sup>[1]</sup></small>. A cached CSS file in my case, to be specific. And although it's easy to force reload on desktop browsers, this is a lot harder on mobile devices. Besides, visitors don't know they are using a CSS file that is served from cache, so they only see the changes when the cache expires.
 
 To make sure the file isn't served from the cache, the url of the file needs to change. But I don't want to change the file url manually every time I've changed the file. But you know what automatically changes when changing a file? That's right! The datetime modified of the file itself!
 
@@ -66,3 +66,5 @@ When using this filter it will:
 6. Add the new url parameters to the file url.
 
 Now my CSS file url will only update if the CSS file itself has been changed.
+
+_<small><sup>[1]</sup></small> I should point out that if you're on the JAMstack, for instance Netlify, this probably won't be a problem, because they often handle it for you._
