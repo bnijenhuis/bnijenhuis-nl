@@ -1,0 +1,78 @@
+<section class="webmentions">
+    <h2>Likes, reposts and/or replies</h2>
+
+    <script>
+        const postUrl = "{{ metadata.url | slice: 0, -1 }}{{ page.url }}";
+
+        fetch("https://webmention.io/api/count?target=" + postUrl)
+        .then(response => response.json())
+        .then(responseJson => 
+            document.querySelector(".webmentions h2").innerHTML += " (" + responseJson.count + ")"
+        );
+
+
+        fetch("https://webmention.io/api/mentions.jf2?target=" + postUrl + "&sort-by=published&sort-dir=up")
+        .then(response => response.json())
+        .then(responseJson => 
+            addWebmentions(responseJson)
+        );
+
+        function addWebmentions(responseJson)
+        {
+            let webmentionLikesArray = [];
+            let webmentionRepostsArray = [];
+            let webmentionReplies = "";
+
+            responseJson.children.forEach(function (entry) { 
+
+                if (entry["wm-property"] == "like-of") {
+                    
+                    webmentionLikesArray.push("<a href=\"" + entry.url + "\">" + entry.author.name + "</a>");
+
+                } else if (entry["wm-property"] == "in-reply-to") {
+
+                    webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\">replied</a>: ";
+                    webmentionReplies += "\"" + entry.content.text + "\"</p>";
+
+                } else if (entry["wm-property"] == "repost-of") {
+
+                    webmentionRepostsArray.push("<a href=\"" + entry.url + "\">" + entry.author.name + "</a>");
+
+                }
+
+            });
+
+            if (webmentionLikesArray.length > 0) {
+
+                if (webmentionLikesArray.length > 1) {
+                    const webmentionLikes = "<p>" + webmentionLikesArray.slice(0, -1).join(", ") + " and " + webmentionLikesArray.slice(-1) + " liked this note.</p>";
+                    document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionLikes);
+                } else {
+                    const webmentionLikes = "<p>" + webmentionLikesArray.slice(-1) + " liked this note.</p>";
+                    document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionLikes);
+                }
+                
+            }
+
+            if (webmentionRepostsArray.length > 0) {
+
+                if (webmentionRepostsArray.length > 1) {
+                    const webmentionReposts = "<p>" + webmentionRepostsArray.slice(0, -1).join(", ") + " and " + webmentionRepostsArray.slice(-1) + " reposted this note.</p>";
+                    document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionReposts);
+                } else {
+                    const webmentionReposts = "<p>" + webmentionRepostsArray.slice(-1) + " reposted this note.</p>";
+                    document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionReposts);
+                }
+                
+            }
+
+            if (webmentionRepostsArray != "") {
+
+                document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionReplies);
+
+            }
+            
+        }
+
+    </script>
+</section>

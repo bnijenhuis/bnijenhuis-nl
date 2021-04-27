@@ -1,4 +1,7 @@
 {
     "layout": "post-layout.liquid",
-    "tags": ["notes"]
+    "tags": ["notes"],
+    "metadata": {
+      "url": "https://bnijenhuis.nl/"
+    }
 }
