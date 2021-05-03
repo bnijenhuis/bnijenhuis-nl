@@ -1,6 +1,6 @@
 ---
 pageTitle: 'Implementing clientside webmentions'
-date: 2021-04-30
+date: 2021-05-03
 ---
 I came across webmentions a while ago and I wanted to try it out. If you don't know what a webmention is, [Wikipedia](https://en.wikipedia.org/wiki/Webmention) describes it as follows:
 
