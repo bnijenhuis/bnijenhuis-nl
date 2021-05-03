@@ -2,15 +2,11 @@
 layout: layout.liquid
 ---
 
-<section>
-
 <h1>{{ pageTitle }}</h1>
 
 <p>Posted on: <time datetime="{{ page.date | postDate }}">{{ page.date | readablePostDate }}</time></p>
 
 {{ content }}
-
-</section>
 
 {% include webmentions %}
 
