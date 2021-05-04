@@ -28,14 +28,19 @@
                     
                     webmentionLikesArray.push("<a href=\"" + entry.url + "\">" + entry.author.name + "</a>");
 
+                } else if (entry["wm-property"] == "repost-of") {
+
+                    webmentionRepostsArray.push("<a href=\"" + entry.url + "\">" + entry.author.name + "</a>");
+
                 } else if (entry["wm-property"] == "in-reply-to") {
 
                     webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\">replied</a>: ";
                     webmentionReplies += "\"" + entry.content.text + "\"</p>";
 
-                } else if (entry["wm-property"] == "repost-of") {
+                } else if (entry["wm-property"] == "mention-of") {
 
-                    webmentionRepostsArray.push("<a href=\"" + entry.url + "\">" + entry.author.name + "</a>");
+                    webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\">mentioned</a> this note: ";
+                    webmentionReplies += "\"" + entry.content.text + "\"</p>";
 
                 }
 
