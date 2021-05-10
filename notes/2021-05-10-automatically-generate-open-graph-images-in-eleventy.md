@@ -172,12 +172,14 @@ You can use webfonts in the SVG's. At first I defined the webfonts in the `<styl
 
 Now that I have the generated image, I need to add this to the `<meta>` tags of the page. For now I've only generated these images for my notes, which are the only pages with tags. I've created a default fallback for other pages. This results in the following code:
 {%raw%}```
-<meta name="og:title" content="{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %}" />
-<meta name="og:url" content="{{ page.url }}" />
+<meta property="og:title" content="{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %}" />
+<meta property="og:url" content="{{ page.url }}" />
 {% if tags %}
-<meta name="og:image" content="/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
+<meta property="og:image" content="/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
+<meta property="og:image:secure_url" content="/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
 {% else %}
-<meta name="og:image" content="/img/default-preview.jpeg" />
+<meta property="og:image" content="/img/default-preview.jpeg" />
+<meta property="og:image:secure_url" content="/img/default-preview.jpeg" />
 {% endif %}
 ```{%endraw%}
 
