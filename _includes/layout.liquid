@@ -8,11 +8,11 @@
   <meta property="og:title" content="{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %}" />
   <meta property="og:url" content="{{ page.url }}" />
   {% if tags %}
-  <meta property="og:image" content="/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
-  <meta property="og:image:secure_url" content="/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
+  <meta property="og:image" content="https://bnijenhuis.nl/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
+  <meta property="og:image:secure_url" content="https://bnijenhuis.nl/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
   {% else %}
-  <meta property="og:image" content="/img/default-preview.jpeg" />
-  <meta property="og:image:secure_url" content="/img/default-preview.jpeg" />
+  <meta property="og:image" content="https://bnijenhuis.nl/img/default-preview.jpeg" />
+  <meta property="og:image:secure_url" content="https://bnijenhuis.nl/img/default-preview.jpeg" />
   {% endif %}
 
   <meta name="twitter:card" content="summary" />
