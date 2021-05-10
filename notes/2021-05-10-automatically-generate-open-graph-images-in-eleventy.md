@@ -21,7 +21,7 @@ What I want to achieve is:
 The advantage of SVG is that you can create an image by code. This makes it perfect to automatically create a base file for the Open Graph image. I have to create this for every single post. To do this we can use the `collections` functionality in Eleventy combined with the `pagination` parameter. Every post is stored in a `collection` in Eleventy and by setting the `pagination` parameter to `1` it will generate a new page for every post.
 
 I created a new file to create the SVG's with the following front matter:
-{% raw %}```
+{% raw %}``` html
 ---
 pagination:
   data: collections.notes
@@ -35,7 +35,7 @@ eleventyExcludeFromCollections: true
 The `alias` parameter sets the variable name which contains all the information of the post. The `permalink` parameter sets the location to which the posts are saved (the `postDate` filter is a filter that formats the date in a `yyyy-mm-dd` format). And lastly the `eleventyExcludeFromCollections` set to `true` makes sure to not include these files in other collections.
 
 Here's the full file I use to create the SVG's. I'll highlight some items after the code.
-{% raw %}```
+{% raw %}``` html
 ---
 pagination:
   data: collections.notes
@@ -83,7 +83,7 @@ eleventyExcludeFromCollections: true
 ### The splitlines filter
 
 Because SVG doesn't support multiline texts we need to do this ourselves. This is a filter I copied from the article I mentioned before. It splits up the given text by words (the page title in this case) and creates an array of lines depending of the maximum size of characters per line (19 in my case).
-```
+``` js
 module.exports = function(eleventyConfig) {
     
     eleventyConfig.addFilter('splitlines', function(input) {
@@ -122,7 +122,7 @@ While looping through the lines I add to the defined starting point to make sure
 So now that I have the SVG's generated for each post, I need to convert these to JPEG's (because Open Graph doesn't support SVG's in their `image` tag). This is where the Eleventy [Image plugin](https://www.11ty.dev/docs/plugins/image/) comes in to play. This plugin can - among other things - convert images, for instance SVG images to JPEG images.
 
 To convert the SVG's to JPEG's I've added the following code to my `.eleventy.js` file:
-```
+``` js
 const fs = require("fs");
 const Image = require("@11ty/eleventy-img");
 
@@ -171,7 +171,7 @@ You can use webfonts in the SVG's. At first I defined the webfonts in the `<styl
 ## Add generated image to `<meta>` tags
 
 Now that I have the generated image, I need to add this to the `<meta>` tags of the page. For now I've only generated these images for my notes, which are the only pages with tags. I've created a default fallback for other pages. This results in the following code:
-{%raw%}```
+{%raw%}``` html
 <meta property="og:title" content="{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %}" />
 <meta property="og:url" content="{{ page.url }}" />
 {% if tags %}
@@ -190,7 +190,7 @@ I'm setting the `og:title` to the page title, except for the homepage, because I
 To optimize this for Twitter there are a couple of exta `meta` tags needed. The images that are generated are 1200 pixels wide and 628 pixel high (this is a 16:9 ratio). This is the recommended size for an "Image from a Tweet with shared link" according to [Sprout Social](https://sproutsocial.com/insights/social-media-image-sizes-guide/). 
 
 The specific `meta` tags for Twitter are:
-{% raw %}```
+{% raw %}``` html
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@bnijenhuis" />
 <meta name="twitter:creator" content="@bnijenhuis" />

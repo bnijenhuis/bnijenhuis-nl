@@ -27,7 +27,7 @@ When I converted the variable font to a WOFF2 file, the filesize went down to on
 ## How to implement it
 
 Now that we have the converted variable font, we only need to add it to the stylesheet. It's mostly the same as you would implement a static font. Here is the font-face declaration I use:
-```
+``` css
 @font-face {
     font-family: Asap;
     src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
@@ -48,7 +48,7 @@ Variable fonts are [pretty well supported](https://caniuse.com/variable-fonts). 
 If the regular style is the built in fallback and the browser needs to render a bold text, it might create a faux bold (this depends on the browser). It's not always what you want, but for a fallback it might be enough. If you don't want the browser to create the faux bold you will need to include the static bold font file. Also, when the built in fallback isn't the style you want (because for some obscure reason the fallback style is italic or something), you have to load the static font separately as well. 
 
 For the `Asap` font the built in fallback style is the regular style. So for non supporting browsers declaring only the variable font will result in text rendered in the regular style. If you want the other styles rendered as they're supposed to you'll need the define all the styles first. Then follow up with a `@supports` declaration for the variable font, like below, to load the variable font for supporting browsers:
-```
+``` css
 @font-face {
     font-family: Asap;
     src: url('/fonts/Asap-Regular.woff2') format('woff2');

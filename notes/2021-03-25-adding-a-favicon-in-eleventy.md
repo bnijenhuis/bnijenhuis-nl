@@ -10,7 +10,7 @@ After creating the correct files, I needed to add them to my Eleventy project. I
 
 I've added the following to my [`.eleventy.js` file](https://github.com/bnijenhuis/bnijenhuis-nl/blob/main/.eleventy.js):
 
-```
+``` js
 // Copy `img/favicon/` to `_site/`
 eleventyConfig.addPassthroughCopy({ "img/favicon": "/" });
 ```

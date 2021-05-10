@@ -8,7 +8,7 @@ Seeing how many starter blogs are available for Eleventy, I thought the date sup
 
 I wanted to use a different formatting than described in that article, but a quick search for Luxon date formatting led to the documentation. So I created the [.eleventy.js file](https://www.11ty.dev/docs/config/) and created the following filters:
 
-```
+``` js
 eleventyConfig.addFilter("readablePostDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, {
         zone: "Europe/Amsterdam",

@@ -8,7 +8,7 @@ To make sure the file isn't served from the cache, the url of the file needs to 
 
 This probably has been done before in Eleventy, so while searching for a solution I came across [a cache busting article for Eleventy](https://rob.cogit8.org/posts/2020-10-28-simple-11ty-cache-busting/) by Rob Hudson. He basically had the same idea as I had and created a filter for Eleventy. But instead of getting the datetime modified of the file, he used the current datetime. This was a good starting point for me, as I'm kinda new to creating filters in Eleventy. So now I had the following filter:
 
-```
+``` js
 eleventyConfig.addFilter("bust", (url) => {
     const [urlPart, paramPart] = url.split("?");
     const params = new URLSearchParams(paramPart || "");
@@ -25,7 +25,7 @@ I could have a unique url for my CSS file by using this filter like so:
 
 which would render into something like this:
 
-```
+``` html
 <link rel="stylesheet" href="/css/style.css?v=1604094309" />
 ```
 
@@ -33,7 +33,7 @@ The next step was to find a way to get the datetime modified of the file. That's
 
 With all these modifications I ended up with the following filter:
 
-```
+``` js
 const fs = require("fs");
 
 module.exports = function(eleventyConfig) {

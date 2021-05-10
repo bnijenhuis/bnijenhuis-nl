@@ -6,7 +6,7 @@ When creating collections, like I am with these notes, it's expected to have an 
 
 Luckily it's pretty easy to create such an index file using the `permalink` option in the frontmatter. This option enables you to control the location of the created file. In my case I wanted to create an index file for all my notes, so I created the file [`notes-archive.njk`](https://github.com/bnijenhuis/bnijenhuis-nl/blob/main/notes-archive.njk) in the root directory of my project with the following frontmatter:
 
-```
+``` html
 ---
 layout: layout.liquid
 permalink: /notes/
@@ -19,7 +19,7 @@ As you can see the `permalink` option has the `/notes/` value, which means the f
 
 As I mentioned earlier, it has been brought to my attention that it is possible to create an index file in the `/notes/` folder. To make this work you have to use the `eleventyExcludeFromCollections` option in the frontmatter and set this to `true`, like this:
 
-```
+``` html
 ---
 layout: layout.liquid
 eleventyExcludeFromCollections: true

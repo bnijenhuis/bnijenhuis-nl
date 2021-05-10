@@ -18,7 +18,7 @@ If you want to include webmentions on your website you'll need a service that co
 
 If you have followed these steps you can sign in your website at [Webmention.io](https://webmention.io/). After signing in you will see the supported providers (the social media links you provided with the rel-me attribute) with buttons to verify them. Click on the button of the provider to finalize the verification process. The last thing you have to do to make sure your website can accept webmentions is to add the webmention and pingback metatags to your website. You can find them on the [settings page](https://webmention.io/settings) of Webmention.io after you signed in. These are the tags I use on my website, yours will be similar:
 
-```
+``` html
 <link rel="webmention" href="https://webmention.io/bnijenhuis.nl/webmention" />
 <link rel="pingback" href="https://webmention.io/bnijenhuis.nl/xmlrpc" />
 ```
@@ -33,7 +33,7 @@ You've now enabled your website for webmentions and linked your social media so 
 
 The `count` endpoint gives a summary of the number of all the webmentions as a total and split up by type of webmentions. This endpoint requires a `target` parameter, which is the full url of the page you want the webmentions of. For instance:
 
-```
+``` html
 <script>
     const postUrl = "http://bnijenhuis.nl/notes/2021-04-30-implementing-clientside-webmentions/";
 
@@ -47,7 +47,7 @@ The `count` endpoint gives a summary of the number of all the webmentions as a t
 
 This will return something like this:
 
-```
+``` json
 {
     "count":17,
     "type":{
@@ -61,7 +61,7 @@ This will return something like this:
 
 The `mentions` endpoint gives you all the details of the webmentions. This endpoint requires the same `target` parameter as the previous endpoint and can be extended with some parameters for sorting the webmentions. For instance:
 
-```
+``` html
 <script>
     const postUrl = "http://bnijenhuis.nl/notes/2021-04-30-implementing-clientside-webmentions/";
 
@@ -75,7 +75,7 @@ The `mentions` endpoint gives you all the details of the webmentions. This endpo
 
 This will return something like this (this is an excerpt from some webmentions on my previous post):
 
-```
+``` json
 {
     "type": "feed",
     "name": "Webmentions",
