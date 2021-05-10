@@ -175,15 +175,28 @@ Now that I have the generated image, I need to add this to the `<meta>` tags of 
 <meta property="og:title" content="{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %}" />
 <meta property="og:url" content="{{ page.url }}" />
 {% if tags %}
-<meta property="og:image" content="/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
-<meta property="og:image:secure_url" content="/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
+<meta property="og:image" content="https://bnijenhuis.nl/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
+<meta property="og:image:secure_url" content="https://bnijenhuis.nl/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
 {% else %}
-<meta property="og:image" content="/img/default-preview.jpeg" />
-<meta property="og:image:secure_url" content="/img/default-preview.jpeg" />
+<meta property="og:image" content="https://bnijenhuis.nl/img/default-preview.jpeg" />
+<meta property="og:image:secure_url" content="https://bnijenhuis.nl/img/default-preview.jpeg" />
 {% endif %}
 ```{%endraw%}
 
-I'm setting the `og:title` to the page title, except for the homepage, because I want that to be different. The `og:url` is set to the current url. The `og:image` is set to the generated JPEG file if the page has tags, otherwise it will be the default image I created.
+I'm setting the `og:title` to the page title, except for the homepage, because I want that to be different. The `og:url` is set to the current url. The `og:image` is set to the generated JPEG file if the page has tags, otherwise it will be the default image I created. Make sure to make this url absolute, or else it won't be parsed correctly.
+
+### Twitter specific `meta` tags
+
+To optimize this for Twitter there are a couple of exta `meta` tags needed. The images that are generated are 1200 pixels wide and 628 pixel high (this is a 16:9 ratio). This is the recommended size for an "Image from a Tweet with shared link" according to [Sprout Social](https://sproutsocial.com/insights/social-media-image-sizes-guide/). 
+
+The specific `meta` tags for Twitter are:
+{% raw %}```
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@bnijenhuis" />
+<meta name="twitter:creator" content="@bnijenhuis" />
+```{% endraw %}
+
+The value 'summary_large_image' makes sure the image is displayed above the Twitter card, instead of as a small thumbnail on the left of the card.
 
 ## Conclusion
 
