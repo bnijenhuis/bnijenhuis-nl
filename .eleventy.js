@@ -2,6 +2,7 @@ const { DateTime } = require("luxon");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const fs = require("fs");
 const Image = require("@11ty/eleventy-img");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 module.exports = function(eleventyConfig) {
     
@@ -10,6 +11,8 @@ module.exports = function(eleventyConfig) {
           closingSingleTag: "default" // opt-out of <img/>-style XHTML single tags
         }
     });
+
+    eleventyConfig.addPlugin(syntaxHighlight);
 
     eleventyConfig.addFilter("readablePostDate", (dateObj) => {
         return DateTime.fromJSDate(dateObj, {
