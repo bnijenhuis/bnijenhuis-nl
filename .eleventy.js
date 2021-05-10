@@ -1,6 +1,7 @@
 const { DateTime } = require("luxon");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const fs = require("fs");
+const Image = require("@11ty/eleventy-img");
 
 module.exports = function(eleventyConfig) {
     
@@ -39,6 +40,28 @@ module.exports = function(eleventyConfig) {
         return `${urlPart}?${params}`;
     });
 
+    eleventyConfig.addFilter('splitlines', function(input) {
+        const parts = input.split(' ');
+        const lines = parts.reduce(function(prev, current) {
+
+        if (!prev.length) {
+            return [current];
+        }
+        
+        let lastOne = prev[prev.length - 1];
+
+        if (lastOne.length + current.length > 19) {
+            return [...prev, current];
+        }
+
+        prev[prev.length - 1] = lastOne + ' ' + current;
+
+        return prev;
+        }, []);
+
+        return lines;
+    });
+
     eleventyConfig.addWatchTarget("css/sass/");
 
     eleventyConfig.addPassthroughCopy({ "css/" : "/css/" });
@@ -49,4 +72,31 @@ module.exports = function(eleventyConfig) {
 
     // Copy `img/favicon/` to `_site/`
     eleventyConfig.addPassthroughCopy({ "img/favicon" : "/" });
+
+    eleventyConfig.on('afterBuild', () => {
+        const socialPreviewImagesDir = "_site/img/social-preview-images/";
+        fs.readdir(socialPreviewImagesDir, function (err, files) {
+            if (files.length > 0) {
+                files.forEach(function (filename) {
+                    if (filename.endsWith(".svg")) {
+
+                        let imageUrl = socialPreviewImagesDir + filename;
+                        Image(imageUrl, {
+                            formats: ["jpeg"],
+                            outputDir: "./" + socialPreviewImagesDir,
+                            filenameFormat: function (id, src, width, format, options) {
+
+                                let outputFilename = filename.substring(0, (filename.length-4));
+                            
+                                return `${outputFilename}.${format}`;
+
+                            }
+                        });
+
+                    }
+                })
+            }
+        })
+    });
+
 };

@@ -4,6 +4,15 @@
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
   <meta name="description" content="Bernard Nijenhuis • Front-end Developer • Katwijk, The Netherlands • Father of 3 kids • Husband to 1 wife • Owner of 2 cats" />
+
+  <meta name="og:title" content="{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %}" />
+  <meta name="og:url" content="{{ page.url }}" />
+  {% if tags %}
+  <meta name="og:image" content="/img/social-preview-images/{{ page.date | postDate }}-{{ pageTitle | slug }}-preview.jpeg" />
+  {% else %}
+  <meta name="og:image" content="/img/default-preview.jpeg" />
+  {% endif %}
+
   <title>{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %} | bnijenhuis</title> 
   
   <link rel="icon" href="/favicon.ico">
