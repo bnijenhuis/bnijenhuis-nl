@@ -35,7 +35,7 @@ The `count` endpoint gives a summary of the number of all the webmentions as a t
 
 ``` html
 <script>
-    const postUrl = "http://bnijenhuis.nl/notes/2021-04-30-implementing-clientside-webmentions/";
+    const postUrl = "https://bnijenhuis.nl/notes/2021-04-30-implementing-clientside-webmentions/";
 
     fetch("https://webmention.io/api/count?target=" + postUrl)
     .then(response => response.json())
@@ -63,7 +63,7 @@ The `mentions` endpoint gives you all the details of the webmentions. This endpo
 
 ``` html
 <script>
-    const postUrl = "http://bnijenhuis.nl/notes/2021-04-30-implementing-clientside-webmentions/";
+    const postUrl = "https://bnijenhuis.nl/notes/2021-04-30-implementing-clientside-webmentions/";
 
     fetch("https://webmention.io/api/mentions.jf2?target=" + postUrl + "&sort-by=published&sort-dir=up")
     .then(response => response.json())
@@ -122,3 +122,25 @@ This will return something like this (this is an excerpt from some webmentions o
 ```
 
 And that's it. For a specific (Eleventy) implementation you can find my implementation on [GitHub](https://github.com/bnijenhuis/bnijenhuis-nl/blob/main/_includes/webmentions.liquid). If you have any questions or remarks, please hit me up on [Twitter](https://twitter.com/bnijenhuis/).
+
+## Paging
+
+By default the `mentions` endpoint returns a maximum of 20 entries. This means that of you have more than 20 webmentions, not all of them will show. There's a parameter to override the default though. It's the `per-page` parameter. You can set this to a value that you think will always include all webmentions, but since I already made the call to get the total count of webmentions I can get that specific count of webmentions. With some minor tweaks to the code I've ended up with this:
+``` html
+<script>
+    const postUrl = "https://bnijenhuis.nl/notes/2021-04-30-implementing-clientside-webmentions/";
+
+    fetch("https://webmention.io/api/count?target=" + postUrl)
+    .then(response => response.json())
+    .then(function (responseJson) {
+        
+        fetch("https://webmention.io/api/mentions.jf2?target=" + postUrl + "&sort-by=published&sort-dir=up&per-page=" + responseJson.count)
+        .then(response => response.json())
+        .then(responseJson => 
+            console.log(responseJson) // do whatever you like with it
+        );
+
+    });
+</script>
+```
+
