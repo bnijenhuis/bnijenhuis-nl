@@ -76,6 +76,10 @@ module.exports = function(eleventyConfig) {
     // Copy `img/favicon/` to `_site/`
     eleventyConfig.addPassthroughCopy({ "img/favicon" : "/" });
 
+    eleventyConfig.addPassthroughCopy({ "sw.js" : "/sw.js" });
+
+    eleventyConfig.addPassthroughCopy({ "offline.json" : "/offline.json" });
+
     eleventyConfig.on('afterBuild', () => {
         const socialPreviewImagesDir = "_site/img/social-preview-images/";
         fs.readdir(socialPreviewImagesDir, function (err, files) {
