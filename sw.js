@@ -1,4 +1,3 @@
-
 const version = '-v1';
 const coreCacheName = 'core' + version;
 const apiCacheName = 'api' + version;
