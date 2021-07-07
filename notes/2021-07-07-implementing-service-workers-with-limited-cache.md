@@ -293,6 +293,12 @@ If a service worker caches a file, it's cached. There's no expiry header for the
 
 I found [this Go Make Things article](https://gomakethings.com/how-to-set-an-expiration-date-for-items-in-a-service-worker-cache/) which does exactly that. In short it intercepts the request and adds a header with a timestamp to it before caching it. When fetching a request from the cache it checks this header to see if it's still valid or not.
 
+### Bonus trick: Using service workers on your development environment
+
+For service workers to work an HTTPS connection is required. There is an exception for `http://localhost[:port]` and `http://127.x.y.z[:port]` however, but if you're using custom domains for your development environments (like I am) you can't use service workers. 
+
+Luckily you can change some settings in Chrome and Firefox to enable service workers on HTTP connections. [Stack Overflow](https://stackoverflow.com/questions/34160509/options-for-testing-service-workers-via-http) to the rescue!
+
 ## Loading the service worker
 
 It took a bit of diving into the documentation, searching for references and (of course) some trial and error, but eventually I reached all of my goals. Only thing left is to make sure the website loads the service worker. This is pretty straight forward:
