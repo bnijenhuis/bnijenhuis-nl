@@ -25,7 +25,7 @@ If you have followed these steps you can sign in your website at [Webmention.io]
 
 ## Link your social media
 
-Now your website has been registered to collect webmentions, but what you really want is to have them automatically collected from your social media. [Brid.gy](https://webmention.io/) is a service that does that for you, also for free. If you want Bridgy to check your Twitter account for webmentions, you just need to click the Twitter button and authorize Bridgy. It will directly start to analyze your tweets, but you can submit specific tweets as well.
+Now your website has been registered to collect webmentions, but what you really want is to have them automatically collected from your social media. [Brid.gy](https://brid.gy/) is a service that does that for you, also for free. If you want Bridgy to check your Twitter account for webmentions, you just need to click the Twitter button and authorize Bridgy. It will directly start to analyze your tweets, but you can submit specific tweets as well.
 
 ## Load the webmentions on your website
 
