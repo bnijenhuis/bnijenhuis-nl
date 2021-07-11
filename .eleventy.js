@@ -65,6 +65,16 @@ module.exports = function(eleventyConfig) {
         return lines;
     });
 
+    eleventyConfig.addFilter('printFileContents', function(filePath) {
+        const relativeFilePath = `.` + filePath;
+        const fileContents = fs.readFileSync(relativeFilePath, (err, data) => {
+            if (err) throw err;
+            return data;
+        });
+      
+        return fileContents.toString('utf8');
+    });
+
     eleventyConfig.addWatchTarget("css/sass/");
 
     eleventyConfig.addPassthroughCopy({ "css/" : "/css/" });
