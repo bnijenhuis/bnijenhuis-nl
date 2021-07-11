@@ -2,7 +2,6 @@ const version = '-v2';
 const coreCacheName = 'core' + version;
 const apiCacheName = 'api' + version;
 const coreAssets = [
-    '/',
     '/css/style.css',
     '/fonts/Asap-Italic-VariableFont_wght.woff2',
     '/fonts/Asap-VariableFont_wght.woff2',
