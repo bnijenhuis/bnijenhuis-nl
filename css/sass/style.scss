@@ -3,7 +3,7 @@
     src: url('/fonts/Asap-VariableFont_wght.woff2') format('woff2 supports variations'),
          url('/fonts/Asap-VariableFont_wght.woff2') format('woff2-variations');
     font-weight: 400 700;
-    font-display: optional;
+    font-display: swap;
     font-style: normal;
 }
 
@@ -12,7 +12,7 @@
     src: url('/fonts/Asap-Italic-VariableFont_wght.woff2') format('woff2 supports variations'),
          url('/fonts/Asap-Italic-VariableFont_wght.woff2') format('woff2-variations');
     font-weight: 400 700;
-    font-display: optional;
+    font-display: swap;
     font-style: italic;
 }
 
