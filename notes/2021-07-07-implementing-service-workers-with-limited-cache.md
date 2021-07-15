@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Implementing Service Workers with limited cache'
 date: 2021-07-07
+tags:
+ - notes
 ---
 When I wrote the post about [Implementing clientside webmentions](https://bnijenhuis.nl/notes/2021-05-03-implementing-clientside-webmentions/) a while ago it was mentioned by [Nicolas Hoizey](https://twitter.com/nhoizey/status/1389630177462915081?s=20) that this implementation would result in many requests to [webmention.io](https://webmention.io/). And although that's the result of having a static website with dynamic webmentions, I still wanted to try and optimize this. I was already planning on implementing service workers and this was the perfect use case.
 

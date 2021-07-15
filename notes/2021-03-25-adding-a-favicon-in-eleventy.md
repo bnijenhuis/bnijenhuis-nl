@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Adding a favicon in Eleventy'
 date: 2021-03-25
+tags:
+ - notes
 ---
 I recently stumbled upon an article posted on CSS-Tricks about [How to Favicon in 2021](https://css-tricks.com/how-to-favicon-in-2021/). Usually I would just use whatever [a Favicon Generator](https://realfavicongenerator.net/) would output for me, but it always felt like it returned...well..._a lot_! 
 

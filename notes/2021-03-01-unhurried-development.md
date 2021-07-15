@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Unhurried Development'
 date: 2021-03-01
+tags:
+ - notes
 ---
 I recently changed hosting and instead of moving my old website, I thought it was the perfect time to build the new website I had in my mind for a while now. The only problem was, I hadn't even started on it yet. And before I would have it at a stage where I feel comfortable enough to share it, it could be weeks, months...years even! 
 

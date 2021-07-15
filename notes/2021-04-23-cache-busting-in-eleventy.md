@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Cache busting in Eleventy'
 date: 2021-04-23
+tags:
+ - notes
 ---
 Because I'm still following my [Unhurried Development](/notes/2021-03-01-unhurried-development/) principle I'm taking small steps and making small changes. That's how I came across an issue with cached assets<small><sup>[1]</sup></small>. A cached CSS file in my case, to be specific. And although it's easy to force reload on desktop browsers, this is a lot harder on mobile devices. Besides, visitors don't know they are using a CSS file that is served from cache, so they only see the changes when the cache expires.
 

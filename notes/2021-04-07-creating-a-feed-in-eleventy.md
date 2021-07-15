@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Creating a feed in Eleventy'
 date: 2021-04-07
+tags:
+ - notes
 ---
 With the rise of all the different social media platforms several years ago, <abbr title="Really Simple Syndication">RSS</abbr> was deemed unnecesary. Even Google [discontinued Google Reader](https://googleblog.blogspot.com/2013/03/a-second-spring-of-cleaning.html) in 2013. But with the weird algorithms used in social media, lots of people (well, lots of developers at least) still rely on feeds to have a chronological feed of articles they're interested in.
 

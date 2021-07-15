@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Dates in Eleventy'
 date: 2021-03-09
+tags:
+ - notes
 ---
 When writing notes it's important to add a date to them. Even if it's just for your own use, it can be really helpful for future you to directly see how recent and relevant the note is. Because in the ever changing world of front-end development just a year can make a real difference. 
 

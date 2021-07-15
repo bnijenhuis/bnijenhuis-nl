@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Collection archive in Eleventy'
 date: 2021-03-17
+tags:
+ - notes
 ---
 When creating collections, like I am with these notes, it's expected to have an index file of all the posts. All my notes are under the `/notes/` url path, but by default the `/notes/` url path itself isn't available. ~~And creating a file in the `notes` folder in the Eleventy project won't fix this, because this will create a new note by itself.~~ [Nicolas Hoizey pointed out on Twitter](https://twitter.com/nhoizey/status/1372321929873518592) that it <em>is</em> possible, more on that at the end of this note.
 

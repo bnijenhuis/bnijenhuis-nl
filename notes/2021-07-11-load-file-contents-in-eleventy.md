@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Load file contents in Eleventy'
 date: 2021-07-11
+tags:
+ - notes
 ---
 At the moment the only image on my website is my logo on the homepage. But since it's an SVG, I decided to load it directly in the HTML. I could just copy the contents of the SVG file and paste it where I wanted it. But if I decide to have the image at several different places, and I make some adjustment to it, I also would have to change it at several different places. 
 

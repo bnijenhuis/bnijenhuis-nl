@@ -1,6 +1,8 @@
 ---
 pageTitle: 'Automatically generate open graph images in Eleventy'
 date: 2021-05-10
+tags:
+ - notes
 ---
 When sharing links on social media, it's nice to have an image instead of just the link. To achieve this you can implement the `og:` meta tags. You can check out the [Open Graph protocol](https://ogp.me/) for more information about all the available tags. To define this image you can use  the `og:image` meta tag. This can be a static image of the logo of your website for example, but for articles it's nicer to have the image contain the title and the date of the article.
 

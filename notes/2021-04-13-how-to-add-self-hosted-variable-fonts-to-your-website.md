@@ -1,6 +1,8 @@
 ---
 pageTitle: 'How to add self-hosted variable fonts to your website'
 date: 2021-04-13
+tags:
+ - notes
 ---
 To give my website a bit more personality I wanted to use a webfont instead of a system font. And because variable fonts are gaining traction I thought I would give it a shot. 
 
