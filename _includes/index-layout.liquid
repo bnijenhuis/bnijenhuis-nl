@@ -4,12 +4,6 @@ layout: layout.liquid
 
 <div class="logo"><a href="/" title="Back to homepage">{{ '/img/bnijenhuis.svg' | printFileContents }}</a></div>
 
-<h1>{{ pageTitle }}</h1>
-
-<p>Posted on: <time datetime="{{ page.date | postDate }}">{{ page.date | readablePostDate }}</time></p>
-
 {{ content }}
-
-{% include webmentions %}
 
 <a href="/">Back to homepage</a>
