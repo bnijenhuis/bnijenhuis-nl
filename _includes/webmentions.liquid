@@ -115,8 +115,10 @@
 
                     } else if (entry["wm-property"] == "mention-of") {
 
-                        webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\">mentioned</a> this note: ";
-                        webmentionReplies += "\"" + entry.content.text + "\"</p>";
+                        if (entry.content) {
+                            webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\">mentioned</a> this note: ";
+                            webmentionReplies += "\"" + entry.content.text + "\"</p>";
+                        }
 
                     }
                     
