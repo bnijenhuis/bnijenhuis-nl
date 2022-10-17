@@ -4,14 +4,14 @@ date: 2022-10-17
 tags:
  - notes
 ---
-_Full disclosure: I'm writing this mainly because I keep having to look up how I've set up my development environment. I'm happy with how it's set up, but because I use it for some hobby projects and the occasional client work, I keep forgetting how I have to set up a new project. Time to document it for my own reference (in case the articles disappear for some reason) and while I'm at it I might as well share it with the rest of you._
+_Full disclosure: I'm writing this mainly because I keep having to look up how I've set up my development environment. I'm happy with how it's set up, but because I use it for some hobby projects and the occasional client work, I keep forgetting how I have to set up a new project. Time to document it for my own reference (in case the reference articles disappear for some reason) and while I'm at it I might as well share it with the rest of you._
 
 There are two detailed posts by [Tania Rascia](https://twitter.com/taniarascia) that I've used for my setup:
 
 - <https://www.taniarascia.com/local-environment/>
 - <https://www.taniarascia.com/setting-up-virtual-hosts/>
 
-I recommend you read these articles for more background information and/or how to set up the development environment on Windows. I'll go over the parts I've used to set it up on my MacBook.
+I recommend you read these articles for more background information and/or how to set up the development environment on Windows. I'll go over the parts I've used to set it up on my Mac. Again, to set it up on Windows, check out the articles of Tania.
 
 ## Local server environment
 
