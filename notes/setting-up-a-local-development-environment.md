@@ -1,6 +1,6 @@
 ---
 pageTitle: 'Setting up a local development environment'
-date: 2022-10-11
+date: 2022-10-17
 tags:
  - notes
 ---
