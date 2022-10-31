@@ -3,19 +3,21 @@
 
     <script>
         const postUrl = "{{ metadata.url | slice: 0, -1 }}{{ page.url }}";
+        const postUrlAlias = (("{{ aliasUrl }}" != "") ? "{{ metadata.url | slice: 0, -1 }}{{ aliasUrl }}": null);
 
-        fetch("https://webmention.io/api/count?target=" + postUrl)
+        let targetItems = "target[]=" + postUrl;
+        if (postUrlAlias) targetItems = "target[]=" + postUrlAlias;
+
+        fetch("https://webmention.io/api/count?" + targetItems)
         .then(response => response.json())
         .then(function (responseJson) {
             
             document.querySelector(".webmentions h2").innerHTML += " (" + responseJson.count + ")";
-
-            fetch("https://webmention.io/api/mentions.jf2?target=" + postUrl + "&sort-by=published&sort-dir=up&per-page=" + responseJson.count)
+            fetch("https://webmention.io/api/mentions.jf2?" + targetItems + "&sort-by=published&sort-dir=up&per-page=" + responseJson.count)
             .then(response => response.json())
             .then(responseJson => 
                 addWebmentions(responseJson)
             );
-
         });
 
         // sites which are know to spam webmentions
