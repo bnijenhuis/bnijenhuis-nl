@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Unhurried Development'
 date: 2021-03-01
+aliasUrl: '/notes/2021-03-01-unhurried-development/'
 tags:
  - notes
 ---

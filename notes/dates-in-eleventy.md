@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Dates in Eleventy'
 date: 2021-03-09
+aliasUrl: '/notes/2021-03-09-dates-in-eleventy/'
 tags:
  - notes
 ---

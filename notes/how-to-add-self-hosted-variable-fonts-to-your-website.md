@@ -1,6 +1,7 @@
 ---
 pageTitle: 'How to add self-hosted variable fonts to your website'
 date: 2021-04-13
+aliasUrl: '/notes/2021-04-13-how-to-add-self-hosted-variable-fonts-to-your-website/'
 tags:
  - notes
 ---

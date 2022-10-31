@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Creating a feed in Eleventy'
 date: 2021-04-07
+aliasUrl: '/notes/2021-04-07-creating-a-feed-in-eleventy/'
 tags:
  - notes
 ---

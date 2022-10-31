@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Collection archive in Eleventy'
 date: 2021-03-17
+aliasUrl: '/notes/2021-03-17-collection-archive-in-eleventy/'
 tags:
  - notes
 ---

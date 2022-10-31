@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Automatically generate open graph images in Eleventy'
 date: 2021-05-10
+aliasUrl: '/notes/2021-05-10-automatically-generate-open-graph-images-in-eleventy/'
 tags:
  - notes
 ---

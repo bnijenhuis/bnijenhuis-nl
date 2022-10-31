@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Load file contents in Eleventy'
 date: 2021-07-11
+aliasUrl: '/notes/2021-07-11-load-file-contents-in-eleventy/'
 tags:
  - notes
 ---

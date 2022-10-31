@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Implementing Service Workers with limited cache'
 date: 2021-07-07
+aliasUrl: '/notes/2021-07-07-implementing-service-workers-with-limited-cache/'
 tags:
  - notes
 ---

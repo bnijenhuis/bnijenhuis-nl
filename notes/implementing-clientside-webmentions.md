@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Implementing clientside webmentions'
 date: 2021-05-03
+aliasUrl: '/notes/2021-05-03-implementing-clientside-webmentions/'
 tags:
  - notes
 ---

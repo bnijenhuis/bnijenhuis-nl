@@ -1,6 +1,7 @@
 ---
 pageTitle: 'Adding a favicon in Eleventy'
 date: 2021-03-25
+aliasUrl: '/notes/2021-03-25-adding-a-favicon-in-eleventy/'
 tags:
  - notes
 ---
