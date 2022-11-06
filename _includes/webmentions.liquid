@@ -104,21 +104,21 @@
 
                     if (entry["wm-property"] == "like-of") {
                         
-                        webmentionLikesArray.push("<a href=\"" + entry.url + "\">" + entry.author.name + "</a>");
+                        webmentionLikesArray.push("<a href=\"" + entry.url + "\" title=\"Like of " + entry.author.name + "\">" + entry.author.name + "</a>");
 
                     } else if (entry["wm-property"] == "repost-of") {
 
-                        webmentionRepostsArray.push("<a href=\"" + entry.url + "\">" + entry.author.name + "</a>");
+                        webmentionRepostsArray.push("<a href=\"" + entry.url + "\" title=\"Repost of " + entry.author.name + "\">" + entry.author.name + "</a>");
 
                     } else if (entry["wm-property"] == "in-reply-to") {
 
-                        webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\">replied</a>: ";
+                        webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\" title=\"Reply of " + entry.author.name + "\">replied</a>: ";
                         webmentionReplies += "\"" + entry.content.text + "\"</p>";
 
                     } else if (entry["wm-property"] == "mention-of") {
 
                         if (entry.content) {
-                            webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\">mentioned</a> this note: ";
+                            webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\" title=\"Mention of " + entry.author.name + "\">mentioned</a> this note: ";
                             webmentionReplies += "\"" + entry.content.text + "\"</p>";
                         }
 
