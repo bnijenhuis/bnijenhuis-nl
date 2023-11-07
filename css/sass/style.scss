@@ -16,6 +16,13 @@
     font-style: italic;
 }
 
+@font-face {
+    font-family: Asap-fallback;
+    size-adjust: 98.3%;
+    ascent-override: 91%;
+    src: local('Arial');
+}
+
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
 }
@@ -25,7 +32,7 @@ img {
 }
 
 body { 
-    font-family: Asap, sans-serif; font-size: 1.5rem;
+    font-family: Asap, Asap-fallback, Arial, sans-serif; font-size: 1.5rem;
     line-height: 1.5; 
     word-break: break-word;
 } 
