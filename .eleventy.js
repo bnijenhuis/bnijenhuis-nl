@@ -12,7 +12,11 @@ module.exports = function(eleventyConfig) {
         }
     });
 
-    eleventyConfig.addPlugin(syntaxHighlight);
+    eleventyConfig.addPlugin(syntaxHighlight, {
+        init: function({ Prism }) {
+            Prism.languages.terminal = Prism.languages.extend('markup', {});
+        }
+    });
 
     eleventyConfig.addFilter("readablePostDate", (dateObj) => {
         return DateTime.fromJSDate(dateObj, {
