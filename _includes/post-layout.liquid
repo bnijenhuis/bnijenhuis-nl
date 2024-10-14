@@ -2,14 +2,23 @@
 layout: layout.liquid
 ---
 
-<div class="logo"><a href="/" title="Back to homepage">{{ '/img/bnijenhuis.svg' | printFileContents }}</a></div>
+<header>
+    <div class="logo">
+        <a href="/" title="Back to homepage">{{ '/img/bnijenhuis.svg' | printFileContents }}</a>
+    </div>
+    {% include 'themes' %}
+</header>
 
-<h1>{{ pageTitle }}</h1>
+<main>
 
-<p>Posted on: <time datetime="{{ page.date | postDate }}">{{ page.date | readablePostDate }}</time></p>
+    <h1>{{ pageTitle }}</h1>
 
-{{ content }}
+    <p>Posted on: <time datetime="{{ page.date | postDate }}">{{ page.date | readablePostDate }}</time></p>
 
-{% include 'webmentions' %}
+    {{ content }}
 
-<a href="/" title="Back to homepage">Back to homepage</a>
+    {% include 'webmentions' %}
+
+    <a href="/" title="Back to homepage">Back to homepage</a>
+
+</main>

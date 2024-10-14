@@ -2,8 +2,17 @@
 layout: layout.liquid
 ---
 
-<div class="logo">{{ '/img/bnijenhuis.svg' | printFileContents }}</div>
+<header>
+    <div class="logo">
+        {{ '/img/bnijenhuis.svg' | printFileContents }}
+    </div>
+    {% include 'themes' %}
+</header>
 
-<h1>{{ pageTitle }}</h1>
+<main>
 
-{{ content }}
+    <h1>{{ pageTitle }}</h1>
+
+    {{ content }}
+
+</main>

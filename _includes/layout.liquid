@@ -22,7 +22,7 @@
 
   <title>{% if page.url == "/" %}Bernard Nijenhuis • Front-end Developer{% else %}{{ pageTitle }}{% endif %} | bnijenhuis</title> 
   
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.webmanifest">
@@ -33,13 +33,15 @@
 
   <link rel="preload" href="/fonts/Asap-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
 
+  <script>
+    let theme = (localStorage.getItem('theme')) ? localStorage.getItem('theme'): 'system';
+    document.querySelector('html').classList.add('theme-' + theme);
+  </script>
   <link rel="stylesheet" href="{{ '/css/style.css' | url | bust }}">
   
 </head> 
-<body>
-  <main> 
-        {{ content }}
-  </main> 
+<body> 
+  {{ content }}
 
   <script>
     if ('serviceWorker' in navigator) {

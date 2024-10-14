@@ -1,0 +1,50 @@
+<div class="themes" hidden>
+    <fieldset>
+        <legend class="sr-only">Themes</legend>
+        <button class="system-mode" aria-pressed="false" data-theme="system">{{ '/img/system.svg' | printFileContents }}<span class="sr-only">System preference<span></button>
+        <button class="light-mode" aria-pressed="false" data-theme="light">{{ '/img/sun.svg' | printFileContents }}<span class="sr-only">Light mode<span></button>
+        <button class="dark-mode" aria-pressed="false" data-theme="dark">{{ '/img/moon.svg' | printFileContents }}<span class="sr-only">Dark mode<span></button>
+    </fieldset>
+</div>
+
+<script>
+    // set selected button
+    document.querySelector('.themes button[data-theme="' + theme + '"]').setAttribute('aria-pressed', 'true');
+
+    // get theme buttons
+    let themeButtons = document.querySelectorAll('.themes button');
+
+    // handle click on button
+    themeButtons.forEach((themeButton) => {
+        themeButton.addEventListener('click', (event) => {
+
+            // get selected theme
+            let selectedTheme = themeButton.getAttribute('data-theme');
+
+            // save selected theme to localStorage
+            localStorage.setItem('theme', selectedTheme);
+            
+            // add pressed state to button
+            themeButton.setAttribute('aria-pressed', 'true');
+
+            // add class to html so we can handle theme in css
+            document.querySelector('html').classList.add('theme-' + selectedTheme);
+
+            // make sure other buttons and themes aren't selected
+            themeButtons.forEach((otherThemeButton) => {
+
+                // button does not match selected button
+                if (themeButton != otherThemeButton) {
+                
+                    // remove pressed state of button
+                    otherThemeButton.setAttribute('aria-pressed', 'false');
+
+                    // remove possible themes from html
+                    document.querySelector('html').classList.remove('theme-' + otherThemeButton.getAttribute('data-theme'));
+                    
+                }
+
+            });
+        });
+    });
+</script>
