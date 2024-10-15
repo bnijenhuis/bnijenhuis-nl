@@ -21,19 +21,19 @@ eleventyExcludeFromCollections: true
         {% set verticalStartingPoint = 210 %}
     {% endif %}
 
-    <rect width="100%" height="100%" fill="white" />
+    <rect width="100%" height="100%" fill="#f8f7f3" />
 
-    <text text-anchor="start" font-family="'Giant Head OT', Helvetica, sans-serif" font-size="200">
+    <text text-anchor="start" font-family="'Giant Head OT', Helvetica, sans-serif" font-size="200" fill="#1f2020">
         <tspan x="80" y="350">bn</tspan>
     </text>
 
-    <line x1="300" y1="80" x2="300" y2="548" stroke="black" />
+    <line x1="300" y1="80" x2="300" y2="548" stroke="#1f2020" />
 
-    <text font-family="Asap, Helvetica, sans-serif" font-size="30">
+    <text font-family="Asap, Helvetica, sans-serif" font-size="30" fill="#1f2020">
         <tspan x="350" y="{{verticalStartingPoint - 90}}">{{ preview.date | readablePostDate }}</tspan>
     </text>
     
-    <text id="text" font-family="Asap, Helvetica, sans-serif" font-size="80" font-weight="bold">
+    <text id="text" font-family="Asap, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#1f2020">
     {% for line in titleInLines %}
         <tspan x="350" y="{{verticalStartingPoint + loop.index0 * 80}}">{{line}}</tspan>
     {% endfor %}
