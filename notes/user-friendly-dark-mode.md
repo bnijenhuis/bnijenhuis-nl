@@ -8,7 +8,7 @@ This website is implemented with a very minimal style, with black text on a whit
 
 ## Preferred color scheme
 
-I'm sure you've heard of dark mode before, and a lot of websites have implemented functionality to switch between dark mode and light mode. But before we dive into that functionality, let's handle the system settings first. A user can set their preference for a dark or light mode in their operating system. This affects, among many other things, how the browser UI is shown. We can tap into this preference in CSS via the [preferred color scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query. Most of the time developers use the light mode of the website as the default style and overwrite certain values in their CSS for users that prefer a dark color scheme. So for this website the implementation would be something like the following:
+I'm sure you've heard of dark mode before, and a lot of websites have implemented functionality to switch between dark mode and light mode. But before we dive into that functionality, let's handle the system settings first. A user can set their preference for a dark or light mode in their operating system. This affects, among many other things, how the browser UI is shown. We can tap into this preference in CSS via the [preferred color scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query. To do this we need to define some default colors as [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) and override these colors with the media query. Most of the time developers use the light mode of the website as the default style and overwrite these values for users that prefer a dark color scheme. So for this website the implementation would be something like the following:
 
 ``` css
 :root {
@@ -47,7 +47,7 @@ To provide this service to the user, we need to cater for 3 states:
 
 The best implementation would be a tri-state button, but unfortunately there's no such thing. Using radio buttons would be a nice solution, but as Hidde de Vries mentioned in his [dark mode article](https://hidde.blog/dark-light/) that isn't really intuitive for keyboard users (and I agree). So what then?
 
-There are a lot of different implementations, and all of them have their own pros and cons, but I'm going for a button implementation. I don't want a toggle button, because I want the 3 options mentioned above and not just a toggle between dark and light mode. We still need to make sure the buttons belong together, so to group the buttons together we need to add a `fieldset` around them with a `legend` to label the group. Combined with the [`aria-pressed` attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed) to indicate which button is selected, we get something like this:
+There are a lot of different implementations, and all of them have their own pros and cons, but I'm going for a button implementation. I don't want 1 toggle button, because I want the 3 options mentioned above and not just a toggle between dark and light mode. Thse buttons need to be grouped together, so to do this we need to add a `fieldset` around them with a `legend` to label the group. Combined with the [`aria-pressed` attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed) to indicate which button is selected, we get something like this:
 
 ``` html
 <div class="themes" hidden>
