@@ -7,7 +7,7 @@ tags:
 
 Recently I decided to look into some functionality in Eleventy I hadn't used before: [Transforms](https://www.11ty.dev/docs/transforms/). According to their website:
 
-<q site="https://www.11ty.dev/docs/transforms/">Transforms can modify a template’s output. For example, use a transform to format/prettify an HTML file with proper whitespace.</q>
+<q cite="https://www.11ty.dev/docs/transforms/">Transforms can modify a template’s output. For example, use a transform to format/prettify an HTML file with proper whitespace.</q>
 
 So let's try and use this functionality to have nicely formatted HTML by using [Prettier](https://prettier.io/). Prettier is a code formatter that can be used for a variety of languages and is customizable to your own preferences.
 
