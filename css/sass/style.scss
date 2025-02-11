@@ -225,4 +225,11 @@ code {
     width: 1px;
 }
 
+/* Turn cross-document view-transitions on */
+/* Note that this at-rule is all that is needed to create the default cross-fade animation  */
+
+@view-transition {
+    navigation: auto;
+}
+
 @import '_prism-tomorrow-night.scss';
