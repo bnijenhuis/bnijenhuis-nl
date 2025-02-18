@@ -86,6 +86,8 @@ module.exports = function (eleventyConfig) {
 
     eleventyConfig.addPassthroughCopy({ "img/*.*": "/img/" });
 
+    eleventyConfig.addPassthroughCopy({ "js/": "/js/" });
+
     eleventyConfig.addPassthroughCopy({ "fonts/": "/fonts/" });
 
     // Copy `img/favicon/` to `_site/`
