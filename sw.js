@@ -1,4 +1,4 @@
-const version = '-v2';
+const version = '-v3';
 const coreCacheName = 'core' + version;
 const apiCacheName = 'api' + version;
 const coreAssets = [
@@ -8,7 +8,8 @@ const coreAssets = [
     '/img/bnijenhuis.svg',
     '/favicon.ico',
     '/offline/',
-    '/offline.json'
+    '/offline.json',
+    '/404/'
 ];
 const localDomains = [
     'http://bnijenhuis-nl.test',
@@ -17,8 +18,8 @@ const localDomains = [
 
 // install service worker and cache core assets
 addEventListener('install', function (event) {
-	event.waitUntil(
-        caches.open(coreCacheName).then(function (cache) { 
+    event.waitUntil(
+        caches.open(coreCacheName).then(function (cache) {
             cache.addAll(coreAssets);
         })
     );
@@ -27,7 +28,7 @@ addEventListener('install', function (event) {
 // make sure to remove old caches
 addEventListener('activate', function (event) {
     event.waitUntil(
-        caches.keys().then(function (keys) { 
+        caches.keys().then(function (keys) {
             return Promise.all(keys
                 .filter(key => key !== coreCacheName && key !== apiCacheName)
                 .map(key => caches.delete(key))
@@ -42,7 +43,10 @@ addEventListener('fetch', function (event) {
     if (event.request.url.includes('/css/style.css')) {
 
         // (directly) respond with cached asset (if available)
-        event.respondWith(serveFromCache(event, true, false));
+        // event.respondWith(serveFromCache(event, true, false));
+
+        // serve from network
+        event.respondWith(serveFromNetwork(event));
 
         // update cache
         event.waitUntil(updateCache(event.request, coreCacheName));
@@ -56,7 +60,10 @@ addEventListener('fetch', function (event) {
     } else {
 
         // (directly) respond with cached asset (if available)
-        event.respondWith(serveFromCache(event, false, false));
+        // event.respondWith(serveFromCache(event, false, false));
+
+        // serve from network
+        event.respondWith(serveFromNetwork(event));
 
         // update cache (only if in core assets)
         var requestUrl = event.request.url;
@@ -83,9 +90,9 @@ function serveFromCache(event, ignoreSearch, checkExpiryHeader) {
 
     // set the right match options
     var matchOptions = {};
-    if (ignoreSearch) matchOptions = {ignoreSearch:true};
+    if (ignoreSearch) matchOptions = { ignoreSearch: true };
 
-    return caches.match(event.request, matchOptions).then(function (cacheResponse) { 
+    return caches.match(event.request, matchOptions).then(function (cacheResponse) {
 
         // if found return cache
         if (cacheResponse) {
@@ -97,7 +104,7 @@ function serveFromCache(event, ignoreSearch, checkExpiryHeader) {
                 return cacheResponse;
             }
         }
-        
+
         // fetch it again, because cache was not found or was expired
         return fetch(event.request).then(function (response) {
 
@@ -109,7 +116,7 @@ function serveFromCache(event, ignoreSearch, checkExpiryHeader) {
 
             return response;
 
-        // if offline and not found in cache, return offline data
+            // if offline and not found in cache, return offline data
         }).catch(function (error) {
 
             if (event.request.url.endsWith('/')) {
@@ -123,6 +130,51 @@ function serveFromCache(event, ignoreSearch, checkExpiryHeader) {
 }
 
 /**
+ * Serve request from network
+ *
+ * @param {Event} event the request event
+ * @return {Object} response object from fetch or from cache
+ */
+function serveFromNetwork(event) {
+
+    // try and get it from the network
+    return fetch(event.request).then(function (response) {
+
+        if ((event.request.destination == 'document') && (response.status == 404)) {
+            return caches.match('/404/');
+        }
+
+        return response;
+
+    }).catch(function (error) {
+
+        // try and get it from cache
+        return caches.match(event.request).then(function (cacheResponse) {
+
+            // if found return cache
+            if (cacheResponse) {
+                return cacheResponse;
+            }
+
+            // otherwise return 404 (if a document is requested)
+            if (event.request.destination == 'document') {
+                return caches.match('/404/');
+            }
+
+        }).catch(function (error) {
+
+            // otherwise return 404 (if a document is requested)
+            if (event.request.destination == 'document') {
+                return caches.match('/404/');
+            }
+
+        });
+
+    });
+
+}
+
+/**
  * update cache
  * @param {Object} request the event request
  * @param {String} cacheName the cache to update
@@ -131,7 +183,7 @@ function serveFromCache(event, ignoreSearch, checkExpiryHeader) {
 function updateCache(request, cacheName) {
     return caches.open(cacheName).then(function (cache) {
         return fetch(request).then(function (response) {
-            
+
             var responseCopy = response.clone();
             var headers = new Headers(responseCopy.headers);
             headers.append('sw-fetched-on', new Date().getTime());
@@ -161,17 +213,17 @@ function updateCache(request, cacheName) {
  * @param {Object} cacheResponse the cacheResponse object
  * @return {Boolean} if true, cacheResponse is valid
  */
- function isCacheResponseStillValid(cacheResponse) {
-	if (!cacheResponse) {
+function isCacheResponseStillValid(cacheResponse) {
+    if (!cacheResponse) {
         return false;
     }
-	
+
     var fetched = cacheResponse.headers.get('sw-fetched-on');
-	
+
     // ms * seconds * minutes * hours
     if (fetched && (parseFloat(fetched) + (1000 * 60 * 60 * 24)) > new Date().getTime()) {
         return true;
     }
 
-	return false;
+    return false;
 };
