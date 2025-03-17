@@ -88,32 +88,54 @@ let blocklist = [
 ];
 
 function addWebmentions(responseJson) {
-    let webmentionLikesArray = [];
-    let webmentionRepostsArray = [];
-    let webmentionReplies = "";
+    let webmentionLikesSharesArray = [];
+    let webmentionReplies = [];
+    let hasLikes = false;
+    let hasShares = false;
 
     responseJson.children.forEach((entry) => {
 
         if (!blocklist.includes(new URL(entry["wm-source"]).origin)) {
 
-            if (entry["wm-property"] == "like-of") {
+            if ((entry["wm-property"] == "like-of") || (entry["wm-property"] == "repost-of")) {
 
-                webmentionLikesArray.push("<a href=\"" + entry.url + "\" title=\"Like of " + entry.author.name + "\">" + entry.author.name + "</a>");
+                if (entry["wm-property"] == "like-of") hasLikes = true;
+                if (entry["wm-property"] == "repost-of") hasShares = true;
 
-            } else if (entry["wm-property"] == "repost-of") {
+                let webmention = "<li class=\"webmention webmention--like-share\">";
+                webmention += "<a class=\"webmention--link\" href=\"" + entry.url + "\" title=\"" + ((entry["wm-property"] == "repost-of") ? "Shared" : "Liked") + " by " + entry.author.name + "\">";
+                if (entry.author.photo != "") webmention += "<img loading=\"lazy\" src=\"" + entry.author.photo + "\" alt=\"" + entry.author.name + "\" />";
+                webmention += "<span class=\"sr-only\">" + entry.author.name + "</span>";
+                webmention += "</a>";
+                webmention += "</li>";
 
-                webmentionRepostsArray.push("<a href=\"" + entry.url + "\" title=\"Repost of " + entry.author.name + "\">" + entry.author.name + "</a>");
+                webmentionLikesSharesArray.push(webmention);
 
-            } else if (entry["wm-property"] == "in-reply-to") {
+            } else if ((entry["wm-property"] == "in-reply-to") || (entry["wm-property"] == "mention-of")) {
 
-                webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\" title=\"Reply of " + entry.author.name + "\">replied</a>: ";
-                webmentionReplies += "\"" + entry.content.text + "\"</p>";
+                console.log(entry);
 
-            } else if (entry["wm-property"] == "mention-of") {
+                if (entry.content && (entry.author.name != "")) {
 
-                if (entry.content) {
-                    webmentionReplies += "<p>" + entry.author.name + " <a href=\"" + entry.url + "\" title=\"Mention of " + entry.author.name + "\">mentioned</a> this note: ";
-                    webmentionReplies += "\"" + entry.content.text + "\"</p>";
+                    const publishedDate = new Date(Date.parse(entry.published));
+
+                    let webmentionReply = "<li class=\"webmention webmention--mention\">";
+                    webmentionReply += "<a class=\"webmention webmention--link\" href=\"" + entry.author.url + "\" title=\"" + ((entry["wm-property"] == "mention-of") ? "Mention" : "Reply") + " by " + entry.author.name + "\">";
+                    if (entry.author.photo != "") webmentionReply += "<img loading=\"lazy\" src=\"" + entry.author.photo + "\" width=\"48\" height=\"48\" alt=\"" + entry.author.name + "\" />";
+                    webmentionReply += "<span class=\"sr-only\">" + entry.author.name + "</span>";
+                    webmentionReply += "</a>";
+                    webmentionReply += "<div class=\"webmention--content\">";
+                    webmentionReply += (entry.content.html) ? entry.content.html : entry.content.text;
+                    webmentionReply += "<div class=\"webmention--metadata\">";
+                    webmentionReply += publishedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toLowerCase();
+                    webmentionReply += " — ";
+                    webmentionReply += "<a href=\"" + entry.url + "\">View original mention</a>";
+                    webmentionReply += "</div>";
+                    webmentionReply += "</div>";
+                    webmentionReply += "</li>";
+
+                    webmentionReplies.push(webmentionReply);
+
                 }
 
             }
@@ -122,33 +144,37 @@ function addWebmentions(responseJson) {
 
     });
 
-    if (webmentionLikesArray.length > 0) {
+    if (webmentionLikesSharesArray.length > 0) {
 
-        if (webmentionLikesArray.length > 1) {
-            const webmentionLikes = "<p>" + webmentionLikesArray.slice(0, -1).join(", ") + " and " + webmentionLikesArray.slice(-1) + " liked this note.</p>";
-            document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionLikes);
-        } else {
-            const webmentionLikes = "<p>" + webmentionLikesArray.slice(-1) + " liked this note.</p>";
-            document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionLikes);
+        let webmentionHtml = "<section class=\"webmentions--likes-shares\">";
+
+        if (hasLikes && hasShares) {
+            webmentionHtml += "<h3>— Likes and shares (" + webmentionLikesSharesArray.length + ")</h3>";
+        } else if (hasLikes) {
+            webmentionHtml += "<h3>— Likes (" + webmentionLikesSharesArray.length + ")</h3>";
+        } else if (hasShares) {
+            webmentionHtml += "<h3>— Shares (" + webmentionLikesSharesArray.length + ")</h3>";
         }
+
+        webmentionHtml += "<ul>";
+        webmentionHtml += webmentionLikesSharesArray.join("");
+        webmentionHtml += "</ul>";
+        webmentionHtml += "</section>";
+
+        webmentionsContainer.insertAdjacentHTML("beforeend", webmentionHtml);
 
     }
 
-    if (webmentionRepostsArray.length > 0) {
+    if (webmentionReplies.length > 0) {
 
-        if (webmentionRepostsArray.length > 1) {
-            const webmentionReposts = "<p>" + webmentionRepostsArray.slice(0, -1).join(", ") + " and " + webmentionRepostsArray.slice(-1) + " reposted this note.</p>";
-            document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionReposts);
-        } else {
-            const webmentionReposts = "<p>" + webmentionRepostsArray.slice(-1) + " reposted this note.</p>";
-            document.querySelector(".webmentions").insertAdjacentHTML("beforeend", webmentionReposts);
-        }
+        let webmentionRepliesHtml = "<section class=\"webmentions--replies\">";
+        webmentionRepliesHtml += "<h3>— Mentions (" + webmentionReplies.length + ")</h3>";
+        webmentionRepliesHtml += "<ul>";
+        webmentionRepliesHtml += webmentionReplies.join("");
+        webmentionRepliesHtml += "</ul>";
+        webmentionRepliesHtml += "</section>";
 
-    }
-
-    if (webmentionReplies != "") {
-
-        webmentionsContainer.insertAdjacentHTML("beforeend", webmentionReplies);
+        webmentionsContainer.insertAdjacentHTML("beforeend", webmentionRepliesHtml);
 
     }
 

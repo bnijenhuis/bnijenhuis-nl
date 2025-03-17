@@ -17,8 +17,10 @@ layout: layout.liquid
 
     {{ content }}
 
-    {% include 'webmentions' %}
-
-    <a href="/" title="Back to homepage">Back to homepage</a>
-
 </main>
+
+{% include 'webmentions' %}
+
+<footer>
+    <a href="/" title="Back to homepage">Back to homepage</a>
+</footer>

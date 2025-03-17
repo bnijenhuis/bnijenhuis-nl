@@ -1,4 +1,7 @@
-<section class="webmentions" data-posturl="{{ metadata.url | slice: 0, -1 }}{{ page.url }}" {% if aliasUrl and "{{ aliasUrl }}" != "" %}data-posturlalias="{{ metadata.url | slice: 0, -1 }}{{ aliasUrl }}"{% endif %}>
-    <h2>Likes, reposts and/or replies</h2>
-</section>
+<aside>
+    <section class="webmentions" data-posturl="{{ metadata.url | slice: 0, -1 }}{{ page.url }}" {% if aliasUrl and "{{ aliasUrl }}" != "" %}data-posturlalias="{{ metadata.url | slice: 0, -1 }}{{ aliasUrl }}"{% endif %}>
+        <h2>Webmentions</h2>
+        <p>These likes, shares and/or mentions are powered by <a href="https://indieweb.org/Webmention">Webmentions</a>, coming from <a href="https://mastodon.social/@bnijenhuis">Mastodon</a>, <a href="https://bsky.app/profile/bnijenhuis.nl">Bluesky</a>, et al.</p>
+    </section>
+</aside>
 <script src="{{ '/js/webmentions.js' | url | bust }}"></script>

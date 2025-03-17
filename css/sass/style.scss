@@ -80,6 +80,7 @@ html {
 body {
     font-family: Asap, Asap-fallback, Arial, sans-serif;
     font-size: 1.5rem;
+    margin: 0;
     line-height: 1.5;
     word-break: break-word;
 }
@@ -222,6 +223,123 @@ main {
     margin: 0 auto;
     width: 90vw;
     width: clamp(16rem, 90vw, 50rem);
+}
+
+aside {
+    background-color: rgba(var(--text-color), .1);
+}
+
+footer {
+    margin: 0 auto;
+    padding: 2rem;
+    width: 90vw;
+    width: clamp(16rem, 90vw, 50rem);
+    text-align: center;
+}
+
+.webmentions {
+    margin: 0 auto;
+    padding: 2rem 0;
+    width: 90vw;
+    width: clamp(16rem, 90vw, 50rem);
+
+    h2 {
+        margin-top: 0;
+    }
+}
+
+.webmentions--likes-shares {
+    ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex-wrap: wrap;
+
+        li {
+            margin-right: -12px;
+        }
+    }
+}
+
+.webmentions--replies {
+    ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+.webmention--mention {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+.webmention--link {
+    flex: 0 0 36px;
+    position: relative;
+    display: inline-block;
+    border: 2px solid rgb(var(--text-color));
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    background-color: rgb(var(--bg-color));
+    transition: all .2s ease-in-out;
+    overflow: hidden;
+
+    &:hover,
+    &:focus {
+        z-index: 10;
+        transform: scale(1.5);
+    }
+}
+
+.webmention--content {
+    position: relative;
+    flex: 1;
+    padding: 1rem 2rem;
+    border-radius: 3rem;
+    background-color: rgba(var(--text-color), .1);
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    &:before {
+        position: absolute;
+        top: -.75rem;
+        left: -.25rem;
+        content: "";
+        display: block;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: rgba(var(--text-color), .1);
+    }
+
+    &:after {
+        position: absolute;
+        top: -.5rem;
+        left: -1.25rem;
+        content: "";
+        display: block;
+        border-radius: 50%;
+        width: .75rem;
+        height: .75rem;
+        background-color: rgba(var(--text-color), .1);
+    }
+}
+
+.webmention--metadata {
+    font-size: 1rem;
+    margin: 1rem -1rem 0 -1rem;
+    padding: 1rem 1rem 0 1rem;
+    border-top: 4px dotted rgb(var(--text-color));
 }
 
 pre {
