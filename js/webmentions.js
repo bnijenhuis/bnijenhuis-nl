@@ -113,8 +113,6 @@ function addWebmentions(responseJson) {
 
             } else if ((entry["wm-property"] == "in-reply-to") || (entry["wm-property"] == "mention-of")) {
 
-                console.log(entry);
-
                 if (entry.content && (entry.author.name != "")) {
 
                     const publishedDate = new Date(Date.parse(entry.published));
@@ -125,10 +123,16 @@ function addWebmentions(responseJson) {
                     webmentionReply += "<span class=\"sr-only\">" + entry.author.name + "</span>";
                     webmentionReply += "</a>";
                     webmentionReply += "<div class=\"webmention--content\">";
-                    webmentionReply += (entry.content.html) ? entry.content.html : entry.content.text;
+                    if (entry.published) {
+                        webmentionReply += (entry.content.html) ? entry.content.html : entry.content.text;
+                    } else {
+                        webmentionReply += (entry.content.text.length > 300) ? '<p>' + entry.content.text.substring(0, 300) + '...</p><p><a href="' + entry.url + '">Read complete mention</a></p>' : '<p>' + entry.content.text + '</p>';
+                    }
                     webmentionReply += "<div class=\"webmention--metadata\">";
-                    webmentionReply += publishedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toLowerCase();
-                    webmentionReply += " — ";
+                    if (entry.published) {
+                        webmentionReply += publishedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).toLowerCase();
+                        webmentionReply += " — ";
+                    }
                     webmentionReply += "<a href=\"" + entry.url + "\">View original mention</a>";
                     webmentionReply += "</div>";
                     webmentionReply += "</div>";
