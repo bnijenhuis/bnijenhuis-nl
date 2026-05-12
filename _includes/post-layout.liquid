@@ -6,7 +6,13 @@ layout: layout.liquid
 
     <h1>{{ pageTitle }}</h1>
 
-    <p>Posted on: <time datetime="{{ page.date | postDate }}">{{ page.date | readablePostDate }}</time></p>
+    <p>
+        Posted on: <time datetime="{{ page.date | postDate }}">{{ page.date | readablePostDate }}</time>
+
+        {% if dateUpdate %}
+            , last updated on: <time datetime="{{ dateUpdate | postDate }}">{{ dateUpdate | readablePostDate }}</time>
+        {% endif  %}
+    </p>
 
     {{ content }}
 

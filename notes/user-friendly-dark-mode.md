@@ -1,6 +1,7 @@
 ---
 pageTitle: 'User friendly dark mode'
 date: 2024-10-14
+dateUpdate: 2026-05-12
 tags:
  - notes
 ---
