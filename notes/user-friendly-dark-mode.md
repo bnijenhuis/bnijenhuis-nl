@@ -157,3 +157,7 @@ This will set the `fill` of the `path` to black, but if the user prefers a dark 
 ## Finetuning contrast colors
 
 Lastly I've changed the color codes for black and white on this website to be a little easier on the eyes. I'm not a designer (no shit), but [this comment on StackExchange](https://graphicdesign.stackexchange.com/a/25360) sums it up pretty well with multiple references (if you're interested). In short it states that although high contrast is good, too high of a contrast could be straining on the eyes. So for dark mode I've changed the black to `#1f2020` and the white to `#e2e2e2` and for light mode I've changed the black to `#1f2020` and the white to `#f8f7f3`, which makes a bit easier on the eyes.
+
+## Update May 12, 2026
+
+I received an email from [Guilherme Simões](https://guilhermesimoes.github.io/) where he told me that he came across an edge case. If you change the theme on a certain page in the website and then hit the back-button, the previous page (if you're still on the same website of course) will load in the theme that was selected before. He dived right into this issue, came up with a solution and described it in detail in his blog post [Making dark mode play nicely with bfcache](https://guilhermesimoes.github.io/blog/making-dark-mode-work-with-bfcache). So if you run into this problem, and you're looking for a solution, I suggest you read that article.
