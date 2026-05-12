@@ -1,0 +1,12 @@
+<footer>
+    {% if page.url != "/" %}
+        <a href="/" title="Back to homepage">Back to homepage</a>
+    {% endif %}
+
+    <a href="#content" class="back-to-top">
+        <span class="sr-only">Back to top</span>
+        {{ '/img/chevron-up.svg' | printFileContents }}
+    </a>
+    <script src="{{ '/js/backtotop.js' | url | bust }}"></script>
+
+</footer>

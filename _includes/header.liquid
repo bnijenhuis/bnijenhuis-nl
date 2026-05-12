@@ -1,0 +1,10 @@
+<header>
+    <div class="logo">
+        {% if page.url == "/" %}
+            {{ '/img/bnijenhuis.svg' | printFileContents }}
+        {% else %}
+            <a href="/" title="Back to homepage">{{ '/img/bnijenhuis.svg' | printFileContents }}</a>
+        {% endif %}
+    </div>
+    {% include 'themes' %}
+</header>

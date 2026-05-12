@@ -74,6 +74,7 @@ html {
     color: rgb(var(--text-color));
     background-color: rgb(var(--bg-color));
     color-scheme: light dark;
+    scroll-behavior: smooth;
     transition: all .2s ease-in-out;
 }
 
@@ -81,12 +82,13 @@ body {
     font-family: Asap, Asap-fallback, Arial, sans-serif;
     font-size: 1.5rem;
     margin: 0;
+    padding: 2rem 0 0 0;
     line-height: 1.5;
     word-break: break-word;
 }
 
 header {
-    margin: 2rem auto 0 auto;
+    margin: 0 auto;
     width: 90vw;
     width: clamp(16rem, 90vw, 50rem);
 }
@@ -234,8 +236,107 @@ footer {
     padding: 2rem 0;
     width: 90vw;
     width: clamp(16rem, 90vw, 50rem);
+    min-height: 40px;
     text-align: center;
 }
+
+@property --progress {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 360deg;
+}
+
+@keyframes progress {
+    0% {
+        --progress: 0deg;
+    }
+
+    100% {
+        --progress: 360deg;
+    }
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    display: block;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: conic-gradient(rgb(var(--text-color)) 0deg var(--progress), rgb(var(--bg-color)) var(--progress) 360deg);
+    box-shadow: 0 0 10px 2px rgba(var(--text-color), .25);
+    transform: translate3d(0, 200%, 0);
+    transition: transform .2s ease-in-out;
+    animation: progress linear;
+    animation-timeline: scroll();
+
+    &.enabled {
+        transform: translate3d(0, 0, 0);
+    }
+
+    &:before {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        border-radius: 50%;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        background-color: rgb(var(--bg-color));
+    }
+
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 36px;
+        height: 36px;
+        transform: translate3d(-50%, -50%, 0);
+        fill: rgb(var(--text-color));
+    }
+}
+
+/*
+.back-to-top {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    display: block;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: conic-gradient(red 0deg var(--progress), blue var(--progress) 360deg);
+    // mask-image: radial-gradient(circle at 100%,
+    //         #333333,
+    //         #333333 50%,
+    //         #eeeeee 75%,
+    //         #333333 75%);
+
+    &:before {
+        display: block;
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        // background-color: rgb(var(--text-color));
+        // background: conic-gradient(rgb(var(--text-color)) 0deg var(--progress), rgb(var(--bg-color)) var(--progress) 360deg);
+        // background: conic-gradient(red 0deg var(--progress), blue var(--progress) 360deg);
+        // mask: radial-gradient(farthest-side, transparent calc(100% - 4px), red 0);
+    }
+
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 36px;
+        height: 36px;
+        transform: translate3d(-50%, -50%, 0);
+        fill: rgb(var(--text-color));
+    }
+}
+*/
 
 .webmentions {
     margin: 0 auto;

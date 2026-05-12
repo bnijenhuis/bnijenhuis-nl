@@ -36,8 +36,13 @@
   <link rel="stylesheet" href="{{ '/css/style.css' | url | bust }}">
   
 </head> 
-<body> 
+<body id="content"> 
+  
+  {% include 'header' %}
+
   {{ content }}
+  
+  {% include 'footer' %}
 
   <script>
     if ('serviceWorker' in navigator) {
